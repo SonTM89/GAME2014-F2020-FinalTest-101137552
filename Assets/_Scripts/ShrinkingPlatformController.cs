@@ -42,7 +42,7 @@ public class ShrinkingPlatformController : MonoBehaviour
 
         isActive = false;
 
-        scaleChange = new Vector3(-0.02f * Time.deltaTime, 0.0f, 0.0f);
+        scaleChange = new Vector3(-0.1f * Time.deltaTime, 0.0f, 0.0f);
 
         sounds = GetComponentsInParent<AudioSource>();
     }

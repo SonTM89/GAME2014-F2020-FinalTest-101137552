@@ -90,7 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Start()
     {
         health = 100;
-        lives = 10;
+        lives = 3;
         isCameraShaking = false;
         shakeTimer = maxShakeTime;
 
