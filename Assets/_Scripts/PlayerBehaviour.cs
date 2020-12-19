@@ -1,4 +1,18 @@
-﻿using System.Collections;
+﻿/*--------------------------------------------------------------
+// PlayerBehaviour.cs
+//
+// Handle all the behaviors of player
+//
+// Created by Tran Minh Son on Dec 13 2020
+// StudentID: 101137552
+// Date last Modified: Dec 15 2020
+// Rev: 1.1
+//  
+// Copyright © 2020 Tran Minh Son. All rights reserved.
+--------------------------------------------------------------*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Unity.Mathematics;
@@ -283,6 +297,7 @@ public class PlayerBehaviour : MonoBehaviour
             transform.SetParent(other.gameObject.transform);
         }
 
+        // Active shrinking platform to shrink in when colliding with player
         if (other.gameObject.CompareTag("Shrinking Platform"))
         {
             other.gameObject.GetComponent<ShrinkingPlatformController>().isActive = true;
@@ -297,6 +312,7 @@ public class PlayerBehaviour : MonoBehaviour
             transform.SetParent(parent);
         }
 
+        // Expand the shrinking platform when not collide with player
         if (other.gameObject.CompareTag("Shrinking Platform"))
         {
             other.gameObject.GetComponent<ShrinkingPlatformController>().isActive = false;

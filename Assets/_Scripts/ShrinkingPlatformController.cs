@@ -3,10 +3,10 @@
 //
 // Control the behavior of a shrinking platform
 //
-// Created by Tran Minh Son on Dec 13 2020
+// Created by Tran Minh Son on Dec 18 2020
 // StudentID: 101137552
-// Date last Modified: Dec 15 2020
-// Rev: 1.1
+// Date last Modified: Dec 19 2020
+// Rev: 1.0
 //  
 // Copyright © 2020 Tran Minh Son. All rights reserved.
 --------------------------------------------------------------*/
@@ -19,27 +19,31 @@ using UnityEngine;
 [System.Serializable]
 public class ShrinkingPlatformController : MonoBehaviour
 {
+    public Transform start;
+    public Transform end;
+    
     public bool isActive;
-    public float platformTimer;
-
-    public PlayerBehaviour player;
 
     private Vector3 scaleChange;
+    private Vector3 distance;
 
     // Start is called before the first frame update
     void Start()
     {
-        platformTimer = 0;
+        distance = end.position - start.position;
+
         isActive = false;
+
         scaleChange = new Vector3(-0.02f * Time.deltaTime, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        _Move();
+
         if (isActive)
-        {
-            platformTimer += Time.deltaTime;
+        {           
             _Shrink();
         }
         else
@@ -48,11 +52,21 @@ public class ShrinkingPlatformController : MonoBehaviour
         }
     }
 
+    // Moving platform slightly up and down
+    void _Move()
+    {
+        var distanceY = (distance.y > 0) ? start.position.y + Mathf.PingPong(0.2f * Time.time, distance.y) : start.position.y;
+
+        transform.position = new Vector3(start.position.x, distanceY, 0.0f);
+    }
+
+    // Shrinking platform
     void _Shrink()
     {
         transform.localScale += scaleChange;
     }
 
+    // Expanding platform
     void _Expand()
     {
         if(transform.localScale.x < 1)
