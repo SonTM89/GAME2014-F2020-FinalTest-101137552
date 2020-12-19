@@ -86,4 +86,9 @@ public class ShrinkingPlatformController : MonoBehaviour
             transform.localScale -= scaleChange;
         }        
     }
+
+    public void Reset()
+    {
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }
 }

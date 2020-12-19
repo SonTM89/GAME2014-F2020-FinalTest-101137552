@@ -3,10 +3,10 @@
 //
 // Handle all the behaviors of player
 //
-// Created by Tran Minh Son on Dec 13 2020
+// Created by Tran Minh Son on Dec 18 2020
 // StudentID: 101137552
-// Date last Modified: Dec 15 2020
-// Rev: 1.1
+// Date last Modified: Dec 19 2020
+// Rev: 1.0
 //  
 // Copyright © 2020 Tran Minh Son. All rights reserved.
 --------------------------------------------------------------*/
