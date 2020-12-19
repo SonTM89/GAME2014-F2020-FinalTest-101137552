@@ -17,6 +17,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public enum ShrinkSounds
+{
+    SHRINKING,
+    EXPANDING,
+}
+
 public class ShrinkingPlatformController : MonoBehaviour
 {
     public Transform start;
@@ -24,8 +30,10 @@ public class ShrinkingPlatformController : MonoBehaviour
     
     public bool isActive;
 
-    private Vector3 scaleChange;
-    private Vector3 distance;
+    private Vector3 scaleChange; // shrinking and expanding value
+    private Vector3 distance; // moving distance
+
+    public AudioSource[] sounds; // Sounds use for shrinking and expanding
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +43,8 @@ public class ShrinkingPlatformController : MonoBehaviour
         isActive = false;
 
         scaleChange = new Vector3(-0.02f * Time.deltaTime, 0.0f, 0.0f);
+
+        sounds = GetComponentsInParent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,6 +73,7 @@ public class ShrinkingPlatformController : MonoBehaviour
     // Shrinking platform
     void _Shrink()
     {
+        sounds[(int)ShrinkSounds.SHRINKING].Play();
         transform.localScale += scaleChange;
     }
 
@@ -71,6 +82,7 @@ public class ShrinkingPlatformController : MonoBehaviour
     {
         if(transform.localScale.x < 1)
         {
+            sounds[(int)ShrinkSounds.EXPANDING].Play();
             transform.localScale -= scaleChange;
         }        
     }
